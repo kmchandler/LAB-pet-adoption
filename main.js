@@ -236,7 +236,7 @@ const pets = [
       name: "Lucy",
       color: "Red",
       specialSkill: "Doesn’t get weirded out by the word “moist.”",
-      type: "dino",
+      type: "Dino",
       imageUrl: "https://i.ytimg.com/vi/lPwb_NJjEYs/maxresdefault.jpg"
     }
   ];
@@ -253,65 +253,43 @@ domString += `<div class="card">
   <p class="card-text">${animal.color}</p>
   <p class="card-text">${animal.specialSkill}</p>
 </div>
-<div class="card-footer">${animal.type}</div>
+<div class="card-footer ${animal.type}-footer">${animal.type}</div>
 </div>`
 });
 
 app.innerHTML = domString;
 
 
-//use this logic to get the cards to filter by time with the color at the bottom by pet type
-
-// const renderToDom = (divId, textToRender) => {
-//   const selectedDiv = document.querySelector(divId);
-//   selectedDiv.innerHTML = textToRender;
-// };
 
 
-// const renderCards = (array) => {
-//   let domString = "";
-//   for (const member of team) {
-//     domString += `<div class="card" style="width: 18rem;">
-//     <img src="${member.image}" class="card-img-top" alt="...">
-//     <div class="card-body">
-//       <p class="card-text">${member.name}</p>
-//     </div>
-//   </div>`;
-//   }
+const filter = (evt) => {
+  const filterText = evt.target.id
 
-//   renderToDom("#app", domString);
-// }
+  const result = filterText === "all" ? pets : pets.filter(pet => pet.type.toLowerCase() === filterText)
 
-// renderCards(team);
+  const app = document.querySelector("#app");
+  let domString = "";
 
+  result.forEach((pet) => {
+  domString += `<div class="card">
+  <h5 class="card-header">${pet.name}</h5>
+  <img class="image" src="${pet.imageUrl}">
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <p class="card-text">${pet.color}</p>
+    <p class="card-text">${pet.specialSkill}</p>
+  </div>
+  <div class="card-footer ${pet.type}-footer">${pet.type}</div>
+  </div>`
+  });
 
-// // function to filter teammates with specific favorite color
-// const filter = (array, color) => {
-//   const colorArray = [];
-
-//   array.forEach((item) => {
-//     if (item.favoriteColor === color) {
-//       colorArray.push(item);
-//     }
-//   });
-
-//   return colorArray;
-// }
-
-// // put the team on the DOM
-// const teamOnDom = (array) => {
-//   let domString = "";
-
-//   for (const item of array) {
-//     domString += item.name;
-//   }
-//   renderToDom("#app", domString);
-// }
-
-// teamOnDom(filter(team, "red"));
+  app.innerHTML = domString;
+}
 
 
-//document.querySelector{"#catButton"}.addEventListener{"click", showAnimal} 
-//document.querySelector{"#dogButton"}.addEventListener{"click", showAnimal} 
-//document.querySelector{"#dinoButton"}.addEventListener{"click", showAnimal} 
-//document.querySelector{"#allButton"}.addEventListener{"click", showAnimal} 
+
+
+document.querySelector("#cat").addEventListener("click", filter)
+document.querySelector("#dog").addEventListener("click", filter)
+document.querySelector("#dino").addEventListener("click", filter)
+document.querySelector("#all").addEventListener("click", filter)

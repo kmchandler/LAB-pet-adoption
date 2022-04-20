@@ -1,3 +1,7 @@
+body {
+  background-color: #f5f5fe;
+}
+
 .cardContainer {
   display: flex;
   flex-flow: row wrap;
@@ -48,21 +52,35 @@
   margin-top: 10px;
 }
 
-#cat-btn {
+#cat {
   margin-right: 10px;
   color: white;
 }
 
-#dog-btn {
+#dog {
   margin-right: 10px;
 }
 
-#dino-btn {
+#dino {
   margin-right: 10px;
   color: white;
 }
 
-#all-btn {
+#all{
   background-color: #b19cd9;
   border: #b19cd9;
+}
+
+
+.Dog-footer {
+  background-color: #dff0d8;
+}
+
+.Cat-footer {
+  background-color:  #daedf7;
+}
+
+
+.Dino-footer {
+  background-color: #fdf8e3;
 }
