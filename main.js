@@ -257,5 +257,55 @@ domString += `<div class="card">
 </div>`
 });
 
-  
 app.innerHTML = domString;
+
+
+//use this logic to get the cards to filter by time with the color at the bottom by pet type
+
+// const renderToDom = (divId, textToRender) => {
+//   const selectedDiv = document.querySelector(divId);
+//   selectedDiv.innerHTML = textToRender;
+// };
+
+
+// const renderCards = (array) => {
+//   let domString = "";
+//   for (const member of team) {
+//     domString += `<div class="card" style="width: 18rem;">
+//     <img src="${member.image}" class="card-img-top" alt="...">
+//     <div class="card-body">
+//       <p class="card-text">${member.name}</p>
+//     </div>
+//   </div>`;
+//   }
+
+//   renderToDom("#app", domString);
+// }
+
+// renderCards(team);
+
+
+// // function to filter teammates with specific favorite color
+// const filter = (array, color) => {
+//   const colorArray = [];
+
+//   array.forEach((item) => {
+//     if (item.favoriteColor === color) {
+//       colorArray.push(item);
+//     }
+//   });
+
+//   return colorArray;
+// }
+
+// // put the team on the DOM
+// const teamOnDom = (array) => {
+//   let domString = "";
+
+//   for (const item of array) {
+//     domString += item.name;
+//   }
+//   renderToDom("#app", domString);
+// }
+
+// teamOnDom(filter(team, "red"));
