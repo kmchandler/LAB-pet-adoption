@@ -236,7 +236,7 @@ const pets = [
       name: "Lucy",
       color: "Red",
       specialSkill: "Doesn’t get weirded out by the word “moist.”",
-      type: "Dino",
+      type: "dino",
       imageUrl: "http://lsae2.iypcdn.com/static//modules/uploads/photos/language1/dino-live-22.jpg?119"
     }
   ];
