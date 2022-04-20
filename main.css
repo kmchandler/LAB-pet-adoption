@@ -30,3 +30,33 @@
 .card-footer {
   text-align: center;
 }
+
+.buttonDiv {
+  display: flex;
+
+}
+
+.buttonDiv {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#cat-btn {
+  margin-right: 10px;
+  color: white;
+}
+
+#dog-btn {
+  margin-right: 10px;
+}
+
+#dino-btn {
+  margin-right: 10px;
+  color: white;
+}
+
+#all-btn {
+  background-color: #b19cd9;
+  border: #b19cd9;
+}
