@@ -241,23 +241,36 @@ const pets = [
     }
   ];
 
+
+
 const app = document.querySelector("#app");
 let domString = "";
 
-pets.forEach((animal) => {
-domString += `<div class="card">
-<h5 class="card-header">${animal.name}</h5>
-<img class="image" src="${animal.imageUrl}">
-<div class="card-body">
-  <h5 class="card-title"></h5>
-  <p class="card-text">${animal.color}</p>
-  <p class="card-text">${animal.specialSkill}</p>
-</div>
-<div class="card-footer ${animal.type}-footer">${animal.type}</div>
-</div>`
-});
 
-app.innerHTML = domString;
+
+const renderToDom = (divId, textToRender) => {
+  const selectedElement = document.querySelector(divId);
+  selectedElement.innerHTML = textToRender;
+};
+
+
+const cardsOnDom = () => {
+  let domString = "";
+  pets.forEach((animal) => {
+     domString += `<div class="card">
+      <h5 class="card-header">${animal.name}</h5>
+      <img class="image" src="${animal.imageUrl}">
+      <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text">${animal.color}</p>
+        <p class="card-text">${animal.specialSkill}</p>
+      </div>
+      <div class="card-footer ${animal.type}-footer">${animal.type}</div>
+      </div>`
+    });
+
+    renderToDom("#cardContainer", domString);
+};
 
 
 
@@ -283,13 +296,143 @@ const filter = (evt) => {
   </div>`
   });
 
-  app.innerHTML = domString;
+  renderToDom("#cardContainer", domString);
 }
 
 
 
 
-document.querySelector("#cat").addEventListener("click", filter)
-document.querySelector("#dog").addEventListener("click", filter)
-document.querySelector("#dino").addEventListener("click", filter)
-document.querySelector("#all").addEventListener("click", filter)
+
+// add new animal 
+const addNewAnimal = () => {
+  const newToDomString = `   
+  <!-- Modal -->
+  <div class="modal fade" id="add-animal-modal" tabindex="-1" aria-labelledby="add-animal-modal" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-md-down">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modal-body">
+        <form>
+        <div class="form-floating mb-3">
+          <input class="form-control form-control-lg" type="text" placeholder="ID" id="animal-id" aria-label="animal-id" required>
+          <label for="animal-id">ID</label>
+        </div>
+    
+        <div class="form-floating mb-3">
+          <input class="form-control form-control-lg" type="text" placeholder="Name" id="name" aria-label="name" required>
+          <label for="name">Name</label>
+        </div>
+
+        <div class="form-floating mb-3">
+        <input class="form-control form-control-lg" type="text" placeholder="Color" id="color" aria-label="color" required>
+        <label for="color">Color</label>
+      </div>
+
+      <div class="form-floating mb-3">
+      <input class="form-control form-control-lg" type="text" placeholder="Special Skill" id="specialSkill" aria-label="specialSkill" required>
+      <label for="specialSkill">Special Skill</label>
+    </div>
+    
+        <div class="form-floating mb-3">
+          <select class="form-select form-control-lg" id="type" aria-label="type" required>
+            <option value="">Select a Type</option>
+            <option value="Cat">Cat</option>
+            <option value="Dog">Dog</option>
+            <option value="Dino">Dino</option>
+          </select>
+          <label for="type">Type</label>
+        </div>
+        
+        <div class="form-floating mb-3">
+        <input class="form-control form-control-lg" type="text" placeholder="Image URL" id="imageUrl" aria-label="imageUrl" required>
+        <label for="imageUrl">Image URL</label>
+      </div>
+    
+        <button 
+          type="submit" 
+          class="btn btn-success" 
+        >
+          Submit
+        </button>
+      </form>
+        </div>
+      </div>
+    </div>
+  </div>
+`
+renderToDom("#modalContainer", newToDomString);
+};
+
+
+
+const theButtons = () => {
+  let domString = `
+  <div class="buttonDiv">
+    <button type="button" id="cat" class="btn btn-info">Cats</button>
+    <button type="button" id="dog" class="btn btn-success">Dogs</button>
+    <button type="button" id="dino" class="btn btn-warning">Dinos</button>
+    <button type="button" id="all" class="btn btn-secondary">All</button>
+     <button id="add-animal" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#add-animal-modal">
+      Add New
+    </button>
+  </div>`
+  ;
+  renderToDom('#filterContainer', domString);
+};
+
+
+
+
+const eventListeners = () => {
+  
+  const formModal = new bootstrap.Modal(document.querySelector('#add-animal-modal'));
+
+  document.querySelector("#cat").addEventListener("click", filter)
+  document.querySelector("#dog").addEventListener("click", filter)
+  document.querySelector("#dino").addEventListener("click", filter)
+  document.querySelector("#all").addEventListener("click", filter)
+  document.querySelector("#add-animal").addEventListener("click", addNewAnimal)
+
+    // this goes in EVERY form submit to prevent page reload
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault(); 
+
+      const newObj = {
+        id: document.querySelector("#animal-id").value,
+        name: document.querySelector("#name").value,
+        color: document.querySelector("#color").value,
+        specialSkill: document.querySelector("#specialSkill").value,
+        type: document.querySelector("#type").value,
+        imageUrl: document.querySelector("#imageUrl").value,
+      };
+  
+      // push that object to the data array    
+      
+      pets.push(newObj);
+  
+      cardsOnDom(pets);
+  
+     
+  
+      // Close modal and reset form
+      formModal.hide() //closes the modal manually
+      form.reset();
+    });
+
+   
+};  
+
+
+
+const startApp = () => {
+  addNewAnimal();
+  theButtons();
+  cardsOnDom(pets);
+  eventListeners(); // always last
+};
+
+startApp();

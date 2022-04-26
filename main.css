@@ -2,7 +2,7 @@ body {
   background-color: #f5f5fe;
 }
 
-.cardContainer {
+#cardContainer {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -69,6 +69,13 @@ body {
 #all{
   background-color: #b19cd9;
   border: #b19cd9;
+  margin-right: 10px;
+}
+
+#add-animal{
+  background-color: #F58AA7;
+  border: #F58AA7;
+  color: white;
 }
 
 
