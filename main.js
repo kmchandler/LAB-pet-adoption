@@ -254,9 +254,9 @@ const renderToDom = (divId, textToRender) => {
 };
 
 
-const cardsOnDom = () => {
+const cardsOnDom = (taco) => {
   let domString = "";
-  pets.forEach((animal) => {
+  taco.forEach((animal) => {
      domString += `<div class="card">
       <h5 class="card-header">${animal.name}</h5>
       <img class="image" src="${animal.imageUrl}">
@@ -394,7 +394,7 @@ const eventListeners = () => {
   document.querySelector("#dog").addEventListener("click", filter)
   document.querySelector("#dino").addEventListener("click", filter)
   document.querySelector("#all").addEventListener("click", filter)
-  document.querySelector("#add-animal").addEventListener("click", addNewAnimal)
+  
 
     // this goes in EVERY form submit to prevent page reload
     const form = document.querySelector('form');
@@ -409,6 +409,7 @@ const eventListeners = () => {
         type: document.querySelector("#type").value,
         imageUrl: document.querySelector("#imageUrl").value,
       };
+      console.log(newObj);
   
       // push that object to the data array    
       
