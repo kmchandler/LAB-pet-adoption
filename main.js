@@ -258,7 +258,9 @@ const cardsOnDom = (taco) => {
   let domString = "";
   taco.forEach((animal) => {
      domString += `<div class="card">
-      <h5 class="card-header">${animal.name}</h5>
+      <h5 class="card-header">${animal.name}
+      <button class="btn btn-danger" id="delete--${animal.id}">X</button>
+      </h5>
       <img class="image" src="${animal.imageUrl}">
       <div class="card-body">
         <h5 class="card-title"></h5>
@@ -426,6 +428,19 @@ const eventListeners = () => {
 
    
 };  
+
+//delete function
+
+
+document.querySelector("#cardContainer").addEventListener("click", (e) => {
+  
+  if (e.target.id.includes("delete")) {
+    const [method, id] = e.target.id.split("--");
+    const index = pets.findIndex(pet => pet.id === parseInt(id)); 
+    pets.splice(index, 1);
+    cardsOnDom(pets);
+  }
+})
 
 
 

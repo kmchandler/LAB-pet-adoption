@@ -1,5 +1,5 @@
 body {
-  background-color: #f5f5fe;
+  background-image: url(main-background.png);
 }
 
 #cardContainer {
@@ -90,4 +90,10 @@ body {
 
 .Dino-footer {
   background-color: #fdf8e3;
+}
+
+.btn-danger {
+  background-color: #eb9247 ;
+  border: #eb9247;
+  float: right;
 }
