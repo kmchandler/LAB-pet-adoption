@@ -259,7 +259,7 @@ const cardsOnDom = (taco) => {
   taco.forEach((animal) => {
      domString += `<div class="card">
       <h5 class="card-header">${animal.name}
-      <button class="btn btn-danger" id="delete--${animal.id}">X</button>
+      <button class="btn btn-danger" id="delete--${animal.id}">x</button>
       </h5>
       <img class="image" src="${animal.imageUrl}">
       <div class="card-body">

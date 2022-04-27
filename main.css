@@ -1,5 +1,6 @@
 body {
-  background-image: url(main-background.png);
+  background-color: #f8e8e7;
+  font-family: 'Lato', sans-serif;
 }
 
 #cardContainer {
@@ -7,16 +8,21 @@ body {
   flex-flow: row wrap;
   justify-content: space-between;
   padding: 20px;
+  color: black;
 }
 
 .card {
     max-width: 30%;
     margin-bottom: 20px;
     padding: auto;
+    background-image: url(card-background.png);
+    width: 100%;
+
 }
 
 .card-header { 
   text-align: center;
+  font-weight: bold;
 }
 
 .image {
@@ -35,7 +41,7 @@ body {
 
 .card-text {
   text-align: center;
-}
+ }
 
 .card-footer {
   text-align: center;
@@ -54,11 +60,15 @@ body {
 
 #cat {
   margin-right: 10px;
-  color: white;
-}
+  background-color: #abbfff;
+  border: #abbfff;
+  color: white
+ }
 
 #dog {
   margin-right: 10px;
+  background-color: #8fef97;
+  border: #8fef97;
 }
 
 #dino {
@@ -67,33 +77,33 @@ body {
 }
 
 #all{
-  background-color: #b19cd9;
-  border: #b19cd9;
+  background-color: #eab8ff;
+  border: #eab8ff;
   margin-right: 10px;
 }
 
 #add-animal{
-  background-color: #F58AA7;
-  border: #F58AA7;
+  background-color: #ffbdf2;
+  border: #ffbdf2;
   color: white;
 }
 
 
 .Dog-footer {
-  background-color: #dff0d8;
+  background-color: #c6f8e5;
 }
 
 .Cat-footer {
-  background-color:  #daedf7;
+  background-color:  #cce1f2;
 }
 
 
 .Dino-footer {
-  background-color: #fdf8e3;
+  background-color: #fbf7d5;
 }
 
 .btn-danger {
-  background-color: #eb9247 ;
-  border: #eb9247;
+  background-color: #cce1f2 ;
+  border: #cce1f2;
   float: right;
-}
+  }
