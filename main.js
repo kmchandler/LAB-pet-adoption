@@ -247,12 +247,10 @@ const app = document.querySelector("#app");
 let domString = "";
 
 
-
 const renderToDom = (divId, textToRender) => {
   const selectedElement = document.querySelector(divId);
   selectedElement.innerHTML = textToRender;
 };
-
 
 const cardsOnDom = (taco) => {
   let domString = "";
@@ -274,36 +272,16 @@ const cardsOnDom = (taco) => {
     renderToDom("#cardContainer", domString);
 };
 
-
-
-
 const filter = (evt) => {
   const filterText = evt.target.id
-
-  const result = filterText === "all" ? pets : pets.filter(pet => pet.type.toLowerCase() === filterText)
-
-  const app = document.querySelector("#app");
-  let domString = "";
-
-  result.forEach((pet) => {
-  domString += `<div class="card">
-  <h5 class="card-header">${pet.name}</h5>
-  <img class="image" src="${pet.imageUrl}">
-  <div class="card-body">
-    <h5 class="card-title"></h5>
-    <p class="card-text">${pet.color}</p>
-    <p class="card-text">${pet.specialSkill}</p>
-  </div>
-  <div class="card-footer ${pet.type}-footer">${pet.type}</div>
-  </div>`
+   document.querySelector("#filterContainer").addEventListener("click", (evt) => {
+    if (filterText === "all") {
+      cardsOnDom(pets);
+    } else {
+      cardsOnDom(pets.filter(pet => pet.type.toLowerCase() === filterText));
+    }
   });
-
-  renderToDom("#cardContainer", domString);
-}
-
-
-
-
+  }
 
 // add new animal 
 const addNewAnimal = () => {
@@ -369,7 +347,6 @@ renderToDom("#modalContainer", newToDomString);
 };
 
 
-
 const theButtons = () => {
   let domString = `
   <div class="buttonDiv">
@@ -384,9 +361,6 @@ const theButtons = () => {
   ;
   renderToDom('#filterContainer', domString);
 };
-
-
-
 
 const eventListeners = () => {
   
@@ -426,22 +400,17 @@ const eventListeners = () => {
       form.reset();
     });
 
+    document.querySelector("#cardContainer").addEventListener("click", (e) => {
+  
+      if (e.target.id.includes("delete")) {
+        const [method, id] = e.target.id.split("--");
+        const index = pets.findIndex(pet => pet.id === parseInt(id)); 
+        pets.splice(index, 1);
+        cardsOnDom(pets);
+      }
+    })
    
 };  
-
-//delete function
-
-
-document.querySelector("#cardContainer").addEventListener("click", (e) => {
-  
-  if (e.target.id.includes("delete")) {
-    const [method, id] = e.target.id.split("--");
-    const index = pets.findIndex(pet => pet.id === parseInt(id)); 
-    pets.splice(index, 1);
-    cardsOnDom(pets);
-  }
-})
-
 
 
 const startApp = () => {
